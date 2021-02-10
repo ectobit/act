@@ -43,6 +43,46 @@ Besides the types supported by flag package, this package provides additional ty
 
 Run `make test-verbose` to see examples output.
 
+## Subcommands
+
+These are handled just like by standard library's flag package.
+
+```go
+package main
+
+import (
+	"log"
+	"os"
+
+	"go.ectobit.com/act"
+)
+
+func main() {
+	subCmd := os.Args[1]
+	switch subCmd {
+	case "create":
+		config := &struct{}{}
+		createCmd := act.New("create")
+
+		if err := createCmd.Parse(config, os.Args[2:]); err != nil {
+			log.Println(err)
+		}
+
+		// Implementation
+
+	case "delete":
+		config := &struct{}{}
+		deleteCmd := act.New("create")
+
+		if err := deleteCmd.Parse(config, os.Args[2:]); err != nil {
+			log.Println(err)
+		}
+
+		// Implementation
+	}
+}
+```
+
 ## TODO
 
 - support req struct tag to mark required values
