@@ -5,7 +5,7 @@ command line flags to arbitrary config struct using struct tags to define defaul
 environment variables' names.
 
 [![Build Status](https://github.com/ectobit/act/workflows/build/badge.svg)](https://github.com/ectobit/act/actions)
-![Go Coverage](https://img.shields.io/badge/coverage-96.4%25-brightgreen?style=flat&logo=go)
+![Go Coverage](https://img.shields.io/badge/coverage-96.5%25-brightgreen?style=flat&logo=go)
 [![Go Reference](https://pkg.go.dev/badge/go.ectobit.com/act.svg)](https://pkg.go.dev/go.ectobit.com/act)
 [![Go Report](https://goreportcard.com/badge/go.ectobit.com/act)](https://goreportcard.com/report/go.ectobit.com/act)
 [![License](https://img.shields.io/github/license/ectobit/act)](LICENSE)
@@ -20,7 +20,7 @@ define default value.
 
 - **flag** - override generated flag name
 - **env** - override generated environment variable name
-- **usage** - override generated flag description
+- **help** - override generated flag description
 - **def** - override default (zero) value
 
 ## Important: all struct fields should be exported.

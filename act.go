@@ -139,7 +139,7 @@ func (a *Act) envVarName(sf reflect.StructField, prefix string) string {
 }
 
 func (*Act) usage(sf reflect.StructField, env string, prefix string) string {
-	if u := sf.Tag.Get("usage"); u != "" {
+	if u := sf.Tag.Get("help"); u != "" {
 		return fmt.Sprintf("%s (env %s)", u, env)
 	}
 

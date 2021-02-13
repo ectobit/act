@@ -36,7 +36,7 @@ func Example_basic() {
 
 func Example_advanced() {
 	type config struct {
-		Env   string `usage:"environment [development|production]" def:"development"`
+		Env   string `help:"environment [development|production]" def:"development"`
 		Port  uint   `def:"3000"`
 		Mongo struct {
 			Hosts             act.StringSlice `def:"mongo"`

@@ -5,6 +5,8 @@
         "nolint",
         "postgres",
         "struct",
-        "structs"
+        "structs",
+        "subcommand",
+        "subcommands"
     ]
 }

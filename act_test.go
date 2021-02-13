@@ -232,7 +232,7 @@ func TestParse_usage(t *testing.T) { //nolint:funlen
 			}{},
 			wantErr: `Port def: parsing uint "a": strconv.ParseUint: parsing "a": invalid syntax`,
 		},
-		"override-flag-and env": {
+		"override-flag-and-env": {
 			config: &struct {
 				Log struct {
 					LogLevel  string `flag:"foo"`
@@ -243,7 +243,7 @@ func TestParse_usage(t *testing.T) { //nolint:funlen
 						URL act.URL
 					}
 				}
-				Expiration time.Duration `usage:"bar"`
+				Expiration time.Duration `help:"bar"`
 				Number1    int
 				Number2    int64 `def:"5"`
 				Number3    float64
@@ -314,7 +314,7 @@ func TestParse_valid(t *testing.T) { //nolint:funlen
 		},
 		"with-tags": {
 			in: &struct {
-				Env   string `usage:"environment [development|production]" def:"development"`
+				Env   string `help:"environment [development|production]" def:"development"`
 				Port  uint   `def:"3000"`
 				Mongo struct {
 					Hosts             act.StringSlice `def:"mongo"`
@@ -800,5 +800,18 @@ func TestParse_environment(t *testing.T) { //nolint:funlen,gocognit
 				t.Errorf("type %T not supported", p)
 			}
 		})
+	}
+}
+
+func TestWithUsage(t *testing.T) {
+	t.Parallel()
+
+	b := &bytes.Buffer{}
+
+	a := act.New("me", act.WithErrorHandling(flag.ContinueOnError), act.WithOutput(b), act.WithUsage("test"))
+	_ = a.Parse(&struct{}{}, []string{"-h"})
+
+	if want := "Usage of test me:\n"; want != b.String() {
+		t.Errorf("want %q got %q", want, b.String())
 	}
 }

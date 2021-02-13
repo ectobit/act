@@ -7,9 +7,9 @@ lint:
 test:
 	@go test ./...
 
-test-verbose:
+testv:
 	@go test -v ./...
 
-test-with-coverage:
+testcov:
 	@go test -coverprofile=coverage.out ./...
 	@go tool cover -func coverage.out
