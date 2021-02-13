@@ -36,6 +36,7 @@ type Act struct {
 // New creates new act command.
 func New(name string, opts ...Option) *Act {
 	a := &Act{
+		flagSet:       flag.NewFlagSet(name, flag.ContinueOnError),
 		output:        os.Stderr,
 		lookupEnvFunc: os.LookupEnv,
 		name:          name,
@@ -46,7 +47,6 @@ func New(name string, opts ...Option) *Act {
 		opt(a)
 	}
 
-	a.flagSet = flag.NewFlagSet(name, flag.ContinueOnError)
 	a.flagSet.SetOutput(a.output)
 
 	return a
@@ -409,12 +409,11 @@ func (a *Act) exit(err error) error {
 
 		return err
 	case flag.ExitOnError:
-		fmt.Fprintln(a.output, err)
-
 		if a.help || errors.Is(err, flag.ErrHelp) {
 			os.Exit(0)
 		}
 
+		fmt.Fprintln(a.output, err)
 		os.Exit(2) //nolint:gomnd
 	case flag.PanicOnError:
 		panic(err)
@@ -444,5 +443,15 @@ func WithOutput(w io.Writer) Option {
 func WithLookupEnvFunc(fn func(string) (string, bool)) Option {
 	return func(a *Act) {
 		a.lookupEnvFunc = fn
+	}
+}
+
+// WithUsage allows to prefix your command name with a parent command name.
+func WithUsage(parentCmdName string) Option {
+	return func(a *Act) {
+		a.flagSet.Usage = func() {
+			fmt.Fprintf(a.output, "Usage of %s %s:\n", parentCmdName, a.name)
+			a.flagSet.PrintDefaults()
+		}
 	}
 }
