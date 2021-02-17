@@ -207,11 +207,9 @@ func (a *Act) parseValue(kind reflect.Kind, varPointer interface{}, flag, value,
 		case *IntSlice:
 			return a.parseIntSlice(varPointer, flag, value, usage)
 		}
-	default:
-		return fmt.Errorf("parsing value: %w: %v", ErrUnsupportedType, kind)
 	}
 
-	return nil
+	return fmt.Errorf("parsing value: %w: %v", ErrUnsupportedType, kind)
 }
 
 func (a *Act) parseBool(p *bool, flag, value, usage string) error {
@@ -364,10 +362,7 @@ func (a *Act) parseStringSlice(p *StringSlice, flag, value, usage string) error 
 
 	ss := &StringSlice{}
 
-	err := ss.Set(value)
-	if err != nil {
-		return err
-	}
+	_ = ss.Set(value)
 
 	*p = *ss
 	a.flagSet.Var(p, flag, usage)
