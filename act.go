@@ -35,7 +35,7 @@ type Act struct {
 
 // New creates new act command.
 func New(name string, opts ...Option) *Act {
-	a := &Act{
+	a := &Act{ //nolint:exhaustivestruct
 		flagSet:       flag.NewFlagSet(name, flag.ContinueOnError),
 		output:        os.Stderr,
 		lookupEnvFunc: os.LookupEnv,
@@ -62,7 +62,7 @@ func (a *Act) Parse(config interface{}, flags []string) error {
 	return a.exit(a.flagSet.Parse(flags))
 }
 
-func (a *Act) parse(config interface{}, flags []string, prefix string) error {
+func (a *Act) parse(config interface{}, flags []string, prefix string) error { //nolint:cyclop
 	a.parseHelp(flags)
 
 	v := reflect.ValueOf(config)
@@ -173,7 +173,7 @@ func (*Act) newPrefix(sf reflect.StructField, prefix string) string {
 	return sf.Name
 }
 
-func (a *Act) parseValue(kind reflect.Kind, varPointer interface{}, flag, value, usage string) error {
+func (a *Act) parseValue(kind reflect.Kind, varPointer interface{}, flag, value, usage string) error { //nolint:cyclop
 	switch kind { //nolint:exhaustive
 	case reflect.Bool:
 		return a.parseBool(varPointer.(*bool), flag, value, usage)
@@ -333,13 +333,13 @@ func (a *Act) parseFloat64(p *float64, flag, value, usage string) error {
 
 func (a *Act) parseURL(p *URL, flag, value, usage string) error {
 	if value == "" {
-		*p = URL{}
+		*p = URL{} //nolint:exhaustivestruct
 		a.flagSet.Var(p, flag, usage)
 
 		return nil
 	}
 
-	u := &URL{}
+	u := &URL{} //nolint:exhaustivestruct
 
 	err := u.Set(value)
 	if err != nil {

@@ -23,7 +23,7 @@ func Example_basic() {
 		}
 	}
 
-	cfg := &config{}
+	cfg := &config{} //nolint:exhaustivestruct
 
 	cmd := act.New("mycmd", act.WithErrorHandling(flag.ContinueOnError))
 
@@ -58,7 +58,7 @@ func Example_advanced() {
 		}
 	}
 
-	cfg := &config{}
+	cfg := &config{} //nolint:exhaustivestruct
 
 	cmd := act.New("cool", act.WithErrorHandling(flag.ContinueOnError))
 

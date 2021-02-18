@@ -417,7 +417,7 @@ func TestParse_environment_errors(t *testing.T) {
 	}
 }
 
-func TestParse_environment(t *testing.T) { //nolint:funlen,gocognit
+func TestParse_environment(t *testing.T) { //nolint:cyclop,gocognit,funlen
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -658,7 +658,7 @@ func TestParse_environment(t *testing.T) { //nolint:funlen,gocognit
 			lookupEnvFunc: func(env string) (string, bool) {
 				return "", false
 			},
-			wantURL: act.URL{},
+			wantURL: act.URL{}, //nolint:exhaustivestruct
 		},
 		"url-env-not-set-def-set": {
 			config: &struct {

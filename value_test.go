@@ -27,7 +27,7 @@ func TestURL(t *testing.T) { //nolint:funlen
 		"empty": {
 			"",
 			"",
-			url.URL{},
+			url.URL{}, //nolint:exhaustivestruct
 			false,
 		},
 		"path": {
@@ -51,7 +51,7 @@ func TestURL(t *testing.T) { //nolint:funlen
 		"invalid": {
 			"%",
 			"",
-			url.URL{},
+			url.URL{}, //nolint:exhaustivestruct
 			true,
 		},
 	}
@@ -63,7 +63,7 @@ func TestURL(t *testing.T) { //nolint:funlen
 		t.Run(n, func(t *testing.T) {
 			t.Parallel()
 
-			f := &act.URL{}
+			f := &act.URL{} //nolint:exhaustivestruct
 
 			err := f.Set(tt.in)
 			if err != nil {
