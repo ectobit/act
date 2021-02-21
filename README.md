@@ -8,7 +8,6 @@ environment variables' names.
 ![Go Coverage](https://img.shields.io/badge/coverage-97.3%25-brightgreen?style=flat&logo=go)
 [![Go Reference](https://pkg.go.dev/badge/go.ectobit.com/act.svg)](https://pkg.go.dev/go.ectobit.com/act)
 [![Go Report](https://goreportcard.com/badge/go.ectobit.com/act)](https://goreportcard.com/report/go.ectobit.com/act)
-[![License](https://img.shields.io/github/license/ectobit/act)](LICENSE)
 
 This package in intended to be used to parse command line arguments and environment variables into an arbitrary config struct.
 This struct may contain multiple nested structs, they all will be processed recursively. Names of the flags and environment
