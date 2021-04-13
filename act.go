@@ -341,8 +341,7 @@ func (a *Act) parseURL(p *URL, flag, value, usage string) error {
 
 	u := &URL{} //nolint:exhaustivestruct
 
-	err := u.Set(value)
-	if err != nil {
+	if err := u.Set(value); err != nil {
 		return err
 	}
 
@@ -380,8 +379,7 @@ func (a *Act) parseIntSlice(p *IntSlice, flag, value, usage string) error {
 
 	is := &IntSlice{}
 
-	err := is.Set(value)
-	if err != nil {
+	if err := is.Set(value); err != nil {
 		return err
 	}
 
