@@ -236,7 +236,7 @@ func (a *Act) parseUint(p *uint, flag, value, usage string) error {
 		return nil
 	}
 
-	val, err := strconv.ParseUint(value, 10, 64)
+	val, err := strconv.ParseUint(value, 10, 64) //nolint:gomnd
 	if err != nil {
 		return fmt.Errorf("parsing uint %q: %w", value, err)
 	}
@@ -253,7 +253,7 @@ func (a *Act) parseUint64(p *uint64, flag, value, usage string) error {
 		return nil
 	}
 
-	val, err := strconv.ParseUint(value, 10, 64)
+	val, err := strconv.ParseUint(value, 10, 64) //nolint:gomnd
 	if err != nil {
 		return fmt.Errorf("parsing uint64 %q: %w", value, err)
 	}
@@ -287,7 +287,7 @@ func (a *Act) parseInt64(p *int64, flag, value, usage string) error {
 		return nil
 	}
 
-	val, err := strconv.ParseInt(value, 10, 64)
+	val, err := strconv.ParseInt(value, 10, 64) //nolint:gomnd
 	if err != nil {
 		return fmt.Errorf("parsing int64 %q: %w", value, err)
 	}
@@ -321,7 +321,7 @@ func (a *Act) parseFloat64(p *float64, flag, value, usage string) error {
 		return nil
 	}
 
-	val, err := strconv.ParseFloat(value, 64)
+	val, err := strconv.ParseFloat(value, 64) //nolint:gomnd
 	if err != nil {
 		return fmt.Errorf("parsing float64 %q: %w", value, err)
 	}
