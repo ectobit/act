@@ -11,7 +11,7 @@ jobs:
       - name: Set up go
         uses: actions/setup-go@v2
         with:
-          go-version: ^1.15
+          go-version: ^1.17
       - name: Set up cache
         uses: actions/cache@v2.1.6
         with:
@@ -21,8 +21,8 @@ jobs:
             ${{ runner.os }}-go-
       - name: Set up linters
         run: |
-          GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint
-          go get -u golang.org/x/lint/golint
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+          go install golang.org/x/lint/golint@latest
       - name: Check out
         uses: actions/checkout@v2.3.4
       - name: Lint
@@ -30,4 +30,4 @@ jobs:
           make lint
       - name: Test
         run: |
-          make test-with-coverage
+          make testcov
