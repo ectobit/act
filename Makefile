@@ -1,4 +1,4 @@
-.PHONY: lint test test-verbose test-with-coverage
+.PHONY: lint test testv testcov
 
 lint:
 	@golint ./...
