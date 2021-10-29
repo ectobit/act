@@ -31,6 +31,7 @@ Besides the types supported by flag package, this package provides additional ty
 - **act.StringSlice** - doesn't support multiple flags but instead supports comma separated strings, i.e. "foo,bar"
 - **act.IntSlice** - doesn't support multiple flags but instead supports comma separated integers, i.e. "5,-8,0"
 - **act.URL**
+- **act.Time** - RFC3339 time
 
 ## Order of precedence:
 

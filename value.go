@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // StringSlice implements flag.Getter interface for []string type.
@@ -117,4 +118,35 @@ func (f *URL) String() string {
 // Get returns flag's value.
 func (f *URL) Get() interface{} {
 	return *f.URL
+}
+
+// Time implements flag.Getter interface for time.Time type.
+type Time struct {
+	*time.Time
+}
+
+// Set sets flag's value by parsing provided url.
+func (f *Time) Set(s string) error {
+	t, err := time.Parse(time.RFC3339, s)
+	if err != nil {
+		return fmt.Errorf("parsing time: %w", err)
+	}
+
+	f.Time = &t
+
+	return nil
+}
+
+// String formats flag's value.
+func (f *Time) String() string {
+	if f != nil && f.Time != nil {
+		return f.Time.Format(time.RFC3339)
+	}
+
+	return ""
+}
+
+// Get returns flag's value.
+func (f *Time) Get() interface{} {
+	return *f.Time
 }
