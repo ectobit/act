@@ -236,7 +236,7 @@ func (a *Act) parseUint(p *uint, flag, value, usage string) error {
 		return nil
 	}
 
-	val, err := strconv.ParseUint(value, 10, 64) //nolint:gomnd
+	val, err := strconv.ParseUint(value, 10, 32) //nolint:gomnd
 	if err != nil {
 		return fmt.Errorf("parsing uint %q: %w", value, err)
 	}
