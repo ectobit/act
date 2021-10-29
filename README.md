@@ -5,7 +5,7 @@ command line flags to arbitrary config struct using struct tags to define defaul
 environment variables' names.
 
 [![Build Status](https://github.com/ectobit/act/workflows/build/badge.svg)](https://github.com/ectobit/act/actions)
-![Go Coverage](https://img.shields.io/badge/coverage-97.3%25-brightgreen?style=flat&logo=go)
+![Go Coverage](https://img.shields.io/badge/coverage-97.1%25-brightgreen?style=flat&logo=go)
 [![Go Reference](https://pkg.go.dev/badge/go.ectobit.com/act.svg)](https://pkg.go.dev/go.ectobit.com/act)
 [![Go Report](https://goreportcard.com/badge/go.ectobit.com/act)](https://goreportcard.com/report/go.ectobit.com/act)
 

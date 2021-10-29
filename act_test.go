@@ -335,6 +335,7 @@ func TestParse_valid(t *testing.T) { //nolint:funlen
 				AWS struct {
 					Region string `def:"eu-central-1"`
 				}
+				Start act.Time `def:"2002-10-02T10:00:00-05:00"`
 			}{},
 		},
 	}

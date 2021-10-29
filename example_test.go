@@ -21,6 +21,7 @@ func Example_basic() {
 				Host act.StringSlice
 			}
 		}
+		Start act.Time
 	}
 
 	cfg := &config{} //nolint:exhaustivestruct
@@ -56,6 +57,7 @@ func Example_advanced() {
 		AWS struct {
 			Region string `def:"eu-central-1"`
 		}
+		Start act.Time `def:"2002-10-02T10:00:00-05:00"`
 	}
 
 	cfg := &config{} //nolint:exhaustivestruct
