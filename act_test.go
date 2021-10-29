@@ -262,6 +262,18 @@ func TestParse_usage(t *testing.T) { //nolint:funlen
 -number-4 uint number 4 (env TEST_NUMBER_4)
 -number-5 uint number 5 (env TEST_NUMBER_5)`,
 		},
+		"time-invalid-def": {
+			config: &struct {
+				Start act.Time `def:"a"`
+			}{},
+			wantErr: `Start def: parsing time: parsing time "a" as "2006-01-02T15:04:05Z07:00": cannot parse "a" as "2006"`,
+		},
+		"time-valid-def": {
+			config: &struct {
+				Start act.Time `def:"2002-10-02T10:00:00-05:00"`
+			}{},
+			want: "Usage of test: -start value start (env TEST_START) (default 2002-10-02T10:00:00-05:00)",
+		},
 	}
 
 	for n, tt := range tests { //nolint:paralleltest
@@ -276,13 +288,13 @@ func TestParse_usage(t *testing.T) { //nolint:funlen
 			a := act.New("test", act.WithErrorHandling(flag.ContinueOnError), act.WithOutput(b))
 
 			if err := a.Parse(tt.config, []string{"-h"}); err != nil && err.Error() != tt.wantErr {
-				t.Errorf("want error %v got error %v", tt.wantErr, err.Error())
+				t.Errorf("want error %q got error %q", tt.wantErr, err.Error())
 			}
 
 			got := strings.TrimSpace(ws.ReplaceAllString(b.String(), " "))
 			want := ws.ReplaceAllString(tt.want, " ")
 			if got != want {
-				t.Errorf("\ngot  %q\nwant %q\n", got, want)
+				t.Errorf("\ngot %q\nwant %q\n", got, want)
 			}
 		})
 	}
