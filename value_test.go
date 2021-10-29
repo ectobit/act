@@ -239,7 +239,7 @@ func TestTime(t *testing.T) { //nolint:funlen
 		"empty": {
 			"",
 			"",
-			time.Time{}, //nolint:exhaustivestruct
+			time.Time{},
 			true,
 		},
 		"format_1": {
@@ -285,7 +285,7 @@ func TestTime(t *testing.T) { //nolint:funlen
 				t.Errorf("want %s got %s", tt.wantString, gotString)
 			}
 
-			gotGet := f.Get().(time.Time)
+			gotGet := f.Get()
 			if !reflect.DeepEqual(gotGet, tt.wantGet) {
 				t.Errorf("want %v got %v", tt.wantGet, gotGet)
 			}

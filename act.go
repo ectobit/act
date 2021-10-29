@@ -86,7 +86,10 @@ func (a *Act) parse(config interface{}, flags []string, prefix string) error { /
 		p := v.FieldByName(field.Name).Addr().Interface()
 
 		// Recurse if got struct which is not of URL type
-		if _, ok := p.(*URL); field.Type.Kind() == reflect.Struct && !ok {
+		_, oku := p.(*URL)
+		_, okt := p.(*Time)
+
+		if field.Type.Kind() == reflect.Struct && !oku && !okt {
 			if err := a.parse(p, flags, a.newPrefix(field, prefix)); err != nil {
 				return err
 			}
@@ -197,8 +200,11 @@ func (a *Act) parseValue(kind reflect.Kind, varPointer interface{}, flag, value,
 	case reflect.Float64:
 		return a.parseFloat64(varPointer.(*float64), flag, value, usage)
 	case reflect.Struct:
-		if varPointer, ok := varPointer.(*URL); ok {
+		switch varPointer := varPointer.(type) {
+		case *URL:
 			return a.parseURL(varPointer, flag, value, usage)
+		case *Time:
+			return a.parseTime(varPointer, flag, value, usage)
 		}
 	case reflect.Slice:
 		switch varPointer := varPointer.(type) {
@@ -331,26 +337,6 @@ func (a *Act) parseFloat64(p *float64, flag, value, usage string) error {
 	return nil
 }
 
-func (a *Act) parseURL(p *URL, flag, value, usage string) error {
-	if value == "" {
-		*p = URL{} //nolint:exhaustivestruct
-		a.flagSet.Var(p, flag, usage)
-
-		return nil
-	}
-
-	u := &URL{} //nolint:exhaustivestruct
-
-	if err := u.Set(value); err != nil {
-		return err
-	}
-
-	*p = *u
-	a.flagSet.Var(p, flag, usage)
-
-	return nil
-}
-
 func (a *Act) parseStringSlice(p *StringSlice, flag, value, usage string) error {
 	if value == "" {
 		*p = StringSlice{}
@@ -384,6 +370,46 @@ func (a *Act) parseIntSlice(p *IntSlice, flag, value, usage string) error {
 	}
 
 	*p = *is
+	a.flagSet.Var(p, flag, usage)
+
+	return nil
+}
+
+func (a *Act) parseURL(p *URL, flag, value, usage string) error {
+	if value == "" {
+		*p = URL{} //nolint:exhaustivestruct
+		a.flagSet.Var(p, flag, usage)
+
+		return nil
+	}
+
+	u := &URL{} //nolint:exhaustivestruct
+
+	if err := u.Set(value); err != nil {
+		return err
+	}
+
+	*p = *u
+	a.flagSet.Var(p, flag, usage)
+
+	return nil
+}
+
+func (a *Act) parseTime(p *Time, flag, value, usage string) error {
+	if value == "" {
+		*p = Time{} //nolint:exhaustivestruct
+		a.flagSet.Var(p, flag, usage)
+
+		return nil
+	}
+
+	t := &Time{} //nolint:exhaustivestruct
+
+	if err := t.Set(value); err != nil {
+		return err
+	}
+
+	*p = *t
 	a.flagSet.Var(p, flag, usage)
 
 	return nil

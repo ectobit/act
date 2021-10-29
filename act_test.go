@@ -310,6 +310,7 @@ func TestParse_valid(t *testing.T) { //nolint:funlen
 						Host act.StringSlice
 					}
 				}
+				Start act.Time
 			}{},
 		},
 		"with-tags": {
