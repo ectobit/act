@@ -1,9 +1,12 @@
 .PHONY: lint test testv testcov
 
 lint:
-	@golint ./...
-	@go vet ./...
-	@golangci-lint run --enable-all --disable varnamelen
+	@golangci-lint run --exclude-use-default=false --enable-all \
+		--disable golint \
+		--disable interfacer \
+		--disable scopelint \
+		--disable maligned \
+		--disable varnamelen
 
 test:
 	@go test ./...
