@@ -179,17 +179,17 @@ func (*Act) newPrefix(sf reflect.StructField, prefix string) string {
 func (a *Act) parseValue(kind reflect.Kind, varPointer interface{}, flag, value, usage string) error { //nolint:cyclop
 	switch kind { //nolint:exhaustive
 	case reflect.Bool:
-		return a.parseBool(varPointer.(*bool), flag, value, usage)
+		return a.parseBool(varPointer.(*bool), flag, value, usage) //nolint:forcetypeassert
 	case reflect.String:
-		a.flagSet.StringVar(varPointer.(*string), flag, value, usage)
+		a.flagSet.StringVar(varPointer.(*string), flag, value, usage) //nolint:forcetypeassert
 
 		return nil
 	case reflect.Uint:
-		return a.parseUint(varPointer.(*uint), flag, value, usage)
+		return a.parseUint(varPointer.(*uint), flag, value, usage) //nolint:forcetypeassert
 	case reflect.Uint64:
-		return a.parseUint64(varPointer.(*uint64), flag, value, usage)
+		return a.parseUint64(varPointer.(*uint64), flag, value, usage) //nolint:forcetypeassert
 	case reflect.Int:
-		return a.parseInt(varPointer.(*int), flag, value, usage)
+		return a.parseInt(varPointer.(*int), flag, value, usage) //nolint:forcetypeassert
 	case reflect.Int64:
 		switch varPointer := varPointer.(type) {
 		case *time.Duration:
@@ -198,7 +198,7 @@ func (a *Act) parseValue(kind reflect.Kind, varPointer interface{}, flag, value,
 			return a.parseInt64(varPointer, flag, value, usage)
 		}
 	case reflect.Float64:
-		return a.parseFloat64(varPointer.(*float64), flag, value, usage)
+		return a.parseFloat64(varPointer.(*float64), flag, value, usage) //nolint:forcetypeassert
 	case reflect.Struct:
 		switch varPointer := varPointer.(type) {
 		case *URL:

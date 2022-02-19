@@ -431,7 +431,7 @@ func TestParse_environment_errors(t *testing.T) {
 	}
 }
 
-func TestParse_environment(t *testing.T) { //nolint:cyclop,gocognit,funlen
+func TestParse_environment(t *testing.T) { //nolint:cyclop,gocognit,funlen,maintidx
 	t.Parallel()
 
 	tests := map[string]struct {
