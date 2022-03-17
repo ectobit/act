@@ -23,7 +23,8 @@ jobs:
         run: |
           go install golang.org/x/lint/golint@latest
           curl -sSL -o /usr/local/bin/nancy https://github.com/sonatype-nexus-community/nancy/releases/download/v1.0.32/nancy-v1.0.32-linux-amd64 && chmod 755 /usr/local/bin/nancy
-          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.44.2
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+          # curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.44.2
       - name: Check out
         uses: actions/checkout@v3
       - name: Lint
