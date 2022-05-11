@@ -152,31 +152,31 @@ func TestURL(t *testing.T) { //nolint:funlen
 		"empty": {
 			"",
 			"",
-			url.URL{}, //nolint:exhaustivestruct
+			url.URL{}, //nolint:exhaustruct
 			false,
 		},
 		"path": {
 			"foo.bar",
 			"foo.bar",
-			url.URL{Path: "foo.bar"}, //nolint:exhaustivestruct
+			url.URL{Path: "foo.bar"}, //nolint:exhaustruct
 			false,
 		},
 		"host": {
 			"//foo.bar",
 			"//foo.bar",
-			url.URL{Host: "foo.bar"}, //nolint:exhaustivestruct
+			url.URL{Host: "foo.bar"}, //nolint:exhaustruct
 			false,
 		},
 		"full": {
 			"https://foo.bar/baz?qux=1",
 			"https://foo.bar/baz?qux=1",
-			url.URL{Scheme: "https", Host: "foo.bar", Path: "/baz", RawQuery: "qux=1"}, //nolint:exhaustivestruct
+			url.URL{Scheme: "https", Host: "foo.bar", Path: "/baz", RawQuery: "qux=1"}, //nolint:exhaustruct
 			false,
 		},
 		"invalid": {
 			"%",
 			"",
-			url.URL{}, //nolint:exhaustivestruct
+			url.URL{}, //nolint:exhaustruct
 			true,
 		},
 	}
@@ -188,7 +188,7 @@ func TestURL(t *testing.T) { //nolint:funlen
 		t.Run(n, func(t *testing.T) {
 			t.Parallel()
 
-			f := &act.URL{} //nolint:exhaustivestruct
+			f := &act.URL{} //nolint:exhaustruct
 
 			err := f.Set(tt.in)
 			if err != nil {
@@ -269,7 +269,7 @@ func TestTime(t *testing.T) { //nolint:funlen
 		t.Run(n, func(t *testing.T) {
 			t.Parallel()
 
-			f := &act.Time{} //nolint:exhaustivestruct
+			f := &act.Time{} //nolint:exhaustruct
 
 			err := f.Set(tt.in)
 			if err != nil {

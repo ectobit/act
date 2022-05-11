@@ -672,7 +672,7 @@ func TestParse_environment(t *testing.T) { //nolint:cyclop,gocognit,funlen,maint
 			lookupEnvFunc: func(env string) (string, bool) {
 				return "", false
 			},
-			wantURL: act.URL{}, //nolint:exhaustivestruct
+			wantURL: act.URL{}, //nolint:exhaustruct
 		},
 		"url-env-not-set-def-set": {
 			config: &struct {
@@ -681,7 +681,7 @@ func TestParse_environment(t *testing.T) { //nolint:cyclop,gocognit,funlen,maint
 			lookupEnvFunc: func(env string) (string, bool) {
 				return "", false
 			},
-			wantURL: act.URL{URL: &url.URL{Scheme: "http", Host: "localhost"}}, //nolint:exhaustivestruct
+			wantURL: act.URL{URL: &url.URL{Scheme: "http", Host: "localhost"}}, //nolint:exhaustruct
 		},
 		"url-env-set": {
 			config: &struct {
@@ -690,7 +690,7 @@ func TestParse_environment(t *testing.T) { //nolint:cyclop,gocognit,funlen,maint
 			lookupEnvFunc: func(env string) (string, bool) {
 				return "https://api.example.com/v1", true
 			},
-			wantURL: act.URL{URL: &url.URL{Scheme: "https", Host: "api.example.com", Path: "/v1"}}, //nolint:exhaustivestruct
+			wantURL: act.URL{URL: &url.URL{Scheme: "https", Host: "api.example.com", Path: "/v1"}}, //nolint:exhaustruct
 		},
 		"string-slice-env-not-set-def-not-set": {
 			config: &struct {

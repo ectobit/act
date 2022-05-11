@@ -24,7 +24,7 @@ func Example_basic() {
 		Start act.Time
 	}
 
-	cfg := &config{} //nolint:exhaustivestruct
+	cfg := &config{} //nolint:exhaustruct
 
 	cmd := act.New("mycmd", act.WithErrorHandling(flag.ContinueOnError))
 
@@ -60,7 +60,7 @@ func Example_advanced() {
 		Start act.Time `def:"2002-10-02T10:00:00-05:00"`
 	}
 
-	cfg := &config{} //nolint:exhaustivestruct
+	cfg := &config{} //nolint:exhaustruct
 
 	cmd := act.New("cool", act.WithErrorHandling(flag.ContinueOnError))
 

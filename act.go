@@ -35,7 +35,7 @@ type Act struct {
 
 // New creates new act command.
 func New(name string, opts ...Option) *Act {
-	a := &Act{ //nolint:exhaustivestruct
+	a := &Act{ //nolint:exhaustruct
 		flagSet:       flag.NewFlagSet(name, flag.ContinueOnError),
 		output:        os.Stderr,
 		lookupEnvFunc: os.LookupEnv,
@@ -377,13 +377,13 @@ func (a *Act) parseIntSlice(p *IntSlice, flag, value, usage string) error {
 
 func (a *Act) parseURL(p *URL, flag, value, usage string) error {
 	if value == "" {
-		*p = URL{} //nolint:exhaustivestruct
+		*p = URL{} //nolint:exhaustruct
 		a.flagSet.Var(p, flag, usage)
 
 		return nil
 	}
 
-	u := &URL{} //nolint:exhaustivestruct
+	u := &URL{} //nolint:exhaustruct
 
 	if err := u.Set(value); err != nil {
 		return err
@@ -397,13 +397,13 @@ func (a *Act) parseURL(p *URL, flag, value, usage string) error {
 
 func (a *Act) parseTime(p *Time, flag, value, usage string) error {
 	if value == "" {
-		*p = Time{} //nolint:exhaustivestruct
+		*p = Time{} //nolint:exhaustruct
 		a.flagSet.Var(p, flag, usage)
 
 		return nil
 	}
 
-	t := &Time{} //nolint:exhaustivestruct
+	t := &Time{} //nolint:exhaustruct
 
 	if err := t.Set(value); err != nil {
 		return err
