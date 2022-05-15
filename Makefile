@@ -1,9 +1,7 @@
-.PHONY: lint test testv testcov
+.PHONY: lint test testv test-cov
 
 lint:
-	@golangci-lint run --exclude-use-default=false --enable-all \
-		--disable exhaustivestruct \
-		--disable varnamelen
+	@golangci-lint run
 
 test:
 	@go test ./...
@@ -11,6 +9,6 @@ test:
 testv:
 	@go test -v ./...
 
-testcov:
+test-cov:
 	@go test -coverprofile=coverage.out ./...
 	@go tool cover -func coverage.out
