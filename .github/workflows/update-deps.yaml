@@ -1,0 +1,10 @@
+name: update-deps
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * *'
+
+jobs:
+  update-deps:
+    uses: ectobit/reusable-workflows/.github/workflows/go-update-deps.yaml@main
