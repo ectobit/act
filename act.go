@@ -432,7 +432,7 @@ func (a *Act) exit(err error) error {
 			os.Exit(0)
 		}
 
-		fmt.Fprintln(a.output, err)
+		fmt.Fprintf(a.output, "act: %v\n", err)
 		os.Exit(2) //nolint:gomnd
 	case flag.PanicOnError:
 		panic(err)
