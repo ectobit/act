@@ -1,4 +1,4 @@
-# act
+# Please use new version from [github.com/acim/act](https://github.com/acim/act)
 
 Microservices oriented [12-factor](https://12factor.net) Go library for parsing environment variables and
 command line flags to arbitrary config struct using struct tags to define default values and to override flag names and
